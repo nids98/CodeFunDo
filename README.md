@@ -2,10 +2,7 @@
 Repository for CodeFunDo++
 
 ### Managing Natural Disaster
-I am totally new to hackathon and this is my first hackathon and I am really excited about this.
-I am planning to build an Android App. Initially I was thinking about making a website which is much easier for me, but the idea seemed much better on an App.
-
-This App will initially take the location of the user. Here user is the one willing to help in the rescue operation. The app is built only for that particular city where the disaster has occured. Based on the location given They get to choose the resuce volunteer group or if there isn't any create a new one. For this user must be registered.
+The App will initially take the location of the user. Here user is the one willing to help in the rescue operation. The app is built only for that particular city where the disaster has occured. Based on the location given They get to choose the resuce volunteer group or if there isn't any create a new one. For this user must be registered.
 
 For the data, Twitter is a gold mine of data. Unlike other social platforms, almost every user’s tweets are completely public and pullable. Most popular hashtags are used to get tweets using the twitter standard/premium API. With the tweets available I can group tweets based on time, day and location. Tweets will be updated every 15 minutes using since ID and maxid of the tweets. I run 2 files to get tweets one to get forward tweets ie from that particular timestamp and the other from that particular timestamp to the desired date specified(Date of the disaster-move back in time).
 
