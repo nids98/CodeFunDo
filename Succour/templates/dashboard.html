@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Main Navbar -->
+	<header>
+		<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+			<a class="navbar-brand mr-1" href="index.html">Succour</a>
+			<ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{email}}</a>
+        </li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+<div class="row">
+	<div class="col-2">
+		<!-- Sidebar -->
+		<div id="wrapper">
+    		<ul class="sidebar navbar-nav">
+        		<li class="nav-item active">
+          			<a class="nav-link" href="dashboard">
+            			<i class="fas fa-fw fa-tachometer-alt"></i>
+            			<span>Dashboard</span>
+          			</a>
+        		</li>
+    		</ul>
+		</div>
+	</div>
+	<div class="col-10">
+		<div id="content-wrapper">
+			<div class="container">
+				<!-- Breadcrumbs -->
+				<ol class="breadcrumb">
+            		<li class="breadcrumb-item">
+              			<a href="#">Dashboard</a>
+            		</li>
+            		<li class="breadcrumb-item active">Overview</li>
+        		</ol>
+			</div>
+    </div>
+
+    <!-- <div class="panel panel-default"> -->
+        <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-fw"></i>People stats
+        </div>
+        <!-- <div class="panel-body"> -->
+            <!-- <canvas id="donot" width="256px" height="256px"></canvas> -->
+            <img src="../static/donot.png" alt="donot">
+        <!-- </div> -->
+        <!-- /.panel-body -->
+    <!-- </div> -->
+    
+		<!-- DataTables - TO MARK -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              User Directory</div>
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Adhaar Number</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for p in missing%}
+                      <tr>
+                      {% for i in p%}
+                      {% if i=='missing' %}
+                      <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-success" id="safe">Safe</button>
+                          <button type="button" class="btn btn-danger" id="dead">Dead</button>
+                        </div>
+                      </td>
+                      {% else %}
+                        <td>{{i}}</td>
+                        {% endif%}
+                      {% endfor %}
+                      </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+         <!-- DataTables - PEOPLE WHO ARE MISSING -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              User Directory - Missing people</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Adhaar Number</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for p in missing%}
+                      <tr>
+                      {% for i in p%}
+                        <td>{{i}}</td>
+                      {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+         <!-- DataTables -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              User Directory - Safe people</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Adhaar Number</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for p in safe%}
+                      <tr>
+                      {% for i in p%}
+                        <td>{{i}}</td>
+                      {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+          <!-- DataTables - DEAD-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              User Directory - Dead people</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Adhaar Number</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for p in dead%}
+                      <tr>
+                      {% for i in p%}
+                        <td>{{i}}</td>
+                      {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+        </div>
+  </div>
+  
+   
+  
+
+{% endblock %}

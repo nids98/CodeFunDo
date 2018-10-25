@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Main Navbar -->
+<header>
+	<!-- Alert box -->
+	{% if registered: %}
+		{% for m in get_flashed_messages(): %}
+			<div class="alert alert-warning alert dissmissible fade slow" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{mess}}
+			</div>
+		{% endfor %}
+	{% endif %}
+	
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+		<a class="navbar-brand mr-1" href="index.html">Succour</a>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="#" data-toggle="modal" data-target="#loginmodal">Login</a>
+				<!-- Login Modal -->
+				<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="loginmodalTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form action="{{url_for('login')}}" method="POST">
+								<div class="modal-body">
+									<label for="lemail">Email:</label><br/>
+									<input type="email" name="lemail"><br/>
+									<label for="lpass">Password:</label><br/>
+									<input type="password" name="lpass">
+								<!-- </div> -->
+								<!-- <div class="modal-footer"> -->
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<input type="submit" class="btn btn-primary" value="Login">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</li>
+
+		</ul>
+	</nav>
+</header>
+	<section>
+		<div class="jumbotron maincontent">
+			<div class="container">
+				<h3>Your current location is : {{city}}</h3>
+				<h2>Our aim is to help in the rescue operation based on the analytics.<br>
+				Join our hands to help cause a change.</h2>
+				<p>Register with us or contribute to help.</p>
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#registerModal">Join our hands</button>
+				<button type="button" class="btn btn-primary">Contribute</button>
+
+				<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  					<div class="modal-dialog modal-dialog-centered" role="document">
+    					<div class="modal-content">
+      						<div class="modal-header">
+        						<h5 class="modal-title" id="registerModalLabel">Register</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          							<span aria-hidden="true">&times;</span>
+        						</button>
+     						</div>
+      						<div class="modal-body">
+      							<form action="" method="POST">
+      								<label for="name">Name: </label><br/>
+      								<input type="text" name="sname" required/><br/>
+									<label for="email">Email: </label><br/>
+      								<input type="email" name="semail" required/><br/>
+      								<label for="region">Region: </label><br/>
+      								<input type="text" name="sregion" required /><br/>
+      								<label for="pass">Password: </label><br/>
+      								<input type="password" name="spass" required/><br/>
+      								<label for="contact">Contact: </label><br/>
+      								<input type="text" name="scontact" required/><br/>
+      								<label for="id">ID proof: </label><br/>
+      								<input type="file" name="fileupload" value="fileupload" id="fileupload" required>
+      								<div class="modal-footer">
+        							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        							<button type="submit" id="btnsignup" class="btn btn-primary">Sign me up</button>
+        						</form>
+      						</div>
+    					</div>
+  						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<h2>Twitter Analysis</h2><br />
+			<h4>Time series Analysis</h4>
+			<img src="../static/time_distribution.png" alt="Time series Analysis">
+
+			<br/>
+			<h4>Most Retweeted tweets</h4>
+			
+					<div class="card-body">
+					  <div class="table-responsive">
+		
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						  <thead>
+							<tr>
+								<th>Tweet</th>
+								<th>Retweet Count</th>
+							</tr>
+						  </thead>
+						  <tbody>
+								{%for t, r in tweet_list%}
+								<tr>
+								<td>{{t.decode('utf-8').strip()}}</td>
+								<td>{{r}}</td>
+								</tr>
+								{% endfor %}
+		
+						  </tbody>
+						</table>
+					  </div>
+					</div>
+					<div class="card-footer small text-muted">Updated 15 minutes ago</div>
+				  </div>
+
+			
+	</section>
+	
+	
+{% endblock %}
+	

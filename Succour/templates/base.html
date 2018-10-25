@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Succour</title>
+	<!-- All CSS for the page -->
+	<style>
+		html {
+ 			position: relative;
+  			min-height: 100%;
+		}
+		body {
+  			height: 100%;
+		}
+		#wrapper {
+  			display: -webkit-box;
+  			display: -ms-flexbox;
+  			display: flex;
+		}
+		#wrapper #content-wrapper {
+  			overflow-x: hidden;
+ 		 	width: 100%;
+  			padding-top: 1rem;
+  			padding-bottom: 80px;
+		}
+		body.fixed-nav #content-wrapper {
+  			margin-top: 56px;
+  			padding-left: 90px;
+		}
+		body.fixed-nav.sidebar-toggled #content-wrapper {
+			padding-left: 0;
+		}
+		.sidebar {
+  			width: 200px !important;
+  			background-color: #212529;
+  			min-height: calc(100vh - 56px);
+		}
+		.sidebar .nav-item .nav-link {
+  			text-align: center;
+  			padding: 0.75rem 1rem;
+  			width: 90px;
+		}
+		.sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {
+  			color: rgba(255, 255, 255, 0.75);
+		}
+
+		.sidebar .nav-item .nav-link span {
+  			font-size: 80%;
+  			display: inline-block;
+		}
+		.sidebar .nav-item .nav-link {
+  			color: rgba(255, 255, 255, 0.5);
+		}
+		.sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {
+  			color: rgba(255, 255, 255, 0.75);
+		}
+		
+  		.navbar-nav .nav-item.active .nav-link {
+  			color: #fff;
+		}
+		.navbar-nav .nav-item .nav-link:focus {
+  			outline: none;
+		}
+	</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+</head>
+<body>
+	
+
+	{% block content %}
+
+	{% endblock %}
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+
+
+	<script src="https://d3js.org/d3-time.v1.min.js"></script>
+	<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+	<!-- <script>
+		var parseTime = d3.timeParse("%H:%M");
+		d3.csv("{{ url_for('static', filename='data/time_data.csv')}}")
+		.row(function(d){
+			return{
+				time: parseTime(d.time),
+				count: Number(d.count.trim())
+			}
+		})
+		.get( function(error, data) {
+	    // console.log(data);
+	    var height = 400;
+	    var width = 600;
+	    var maxTime = d3.max(data, function(d){ return d.time; });
+	    var minTime = d3.min(data, function(d){ return d.time; });
+	    var maxCount= d3.max(data, function(d){ return d.count; });
+	    // console.log(maxTime);
+	    // console.log(minTime);
+	    // console.log(maxCount);
+	    var y = d3.scaleLinear()
+	    		  .domain([0, maxCount])
+	    		  .range([height, 0]);
+	    var x = d3.scaleTime()
+	    		  .domain([minTime, maxTime])
+	    		  .range([0, width]);
+	    var yAxis = d3.axisLeft(y);
+	    var xAxis = d3.axisBottom(x);
+	    var svg = d3.select('body').append('svg')
+	                .attr('height', '100%')
+	                .attr('width', '100%');
+	    var chartGroup = svg.append('g')
+	    					.attr('transform', 'translate(50,50)');
+	    var line = d3.line().x(function(d){ return x(d.time)})
+	    					.y(function(d){ return y(d.count)});
+	    chartGroup.append('path').attr('d',line(data));
+	    chartGroup.append('g').attr('class', 'x Axis').attr('transform', 'translate(0,'+height+')').call(xAxis);
+	    chartGroup.append('g').attr('class', 'y Axis').call(yAxis);
+    })
+	</script> -->
+
+
+
+
+	<!-- Bootstrap JS -->
+	<!-- JQuery CDN - uncompressed -->
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<!-- ChartJS CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+	<!-- Bootstrap JS -->
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+	
+	<script type="text/javascript">
+    	$(function() {
+    		$('#btnsignup').click(function(event, form) {
+				event.preventDefault();
+    			console.log('Entered')
+        		$.ajax({
+            		url: '/signup',
+            		data: $('form').serialize(),
+            		type: 'POST',
+            		success: function(response) {
+						alert('Successfully registered, Please login to continue')
+						console.log('success')
+                		console.log(response);
+            		},
+            		error: function(error) {
+						console.log('error')
+                		console.log(error);
+            		}
+				});
+				$('#registerModal').modal('hide');
+				location.reload();
+				$('#loginmodal').modal('show');
+    		});
+		});
+    
+	</script>
+
+
+
+<!-- <script>
+    
+		$(document).ready(function(){
+		  var ctx = $("donot").getContext("2d");
+		  var data = [
+			{
+			  value: 270,
+			  color: 'cornflowerblue',
+			  highlight: 'lightskyblue',
+			  label: "Missing"
+			},
+			{
+			  value: 50,
+			  color: 'lightgreen',
+			  highlight: 'yellowgreen',
+			  label: "safe"
+			},
+			{
+			  value: 40,
+			  color: 'orange',
+			  highlight: 'darkorange',
+			  label: "Dead"
+			}
+		  ];
+		  
+		  var chart= new Chart(ctx, {
+			type:'doughnut',
+			data: data,
+			options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:true
+					}
+				}]
+			}
+		}
+		  });
+		});
+	  </script> -->
+	
+
+</body>
+</html>
