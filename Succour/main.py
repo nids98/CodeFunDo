@@ -59,7 +59,7 @@ city='Udupi'
 def index():
     with open('tweets.txt', 'r') as f:
         alltext = f.read()
-	tweet_list = alltext.split(',,,')
+        tweet_list = alltext.split(',,,')
     with open('retweetcount.txt', 'r') as f:
     	alltext = f.read()
     	retweet_count = alltext.split(',,,')
