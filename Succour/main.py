@@ -61,8 +61,8 @@ def index():
         alltext = f.read()
         tweet_list = alltext.split(',,,')
     with open('retweetcount.txt', 'r') as f:
-    	alltext = f.read()
-    	retweet_count = alltext.split(',,,')
+        alltext = f.read()
+        retweet_count = alltext.split(',,,')
         return render_template('index.html', city = city, registered=registered, tweet_list=zip(tweet_list,retweet_count))
 
 
