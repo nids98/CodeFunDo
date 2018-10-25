@@ -63,7 +63,7 @@ def index():
     with open('retweetcount.txt', 'r') as f:
     	alltext = f.read()
     	retweet_count = alltext.split(',,,')
-	return render_template('index.html', city = city, registered=registered, tweet_list=zip(tweet_list,retweet_count))
+        return render_template('index.html', city = city, registered=registered, tweet_list=zip(tweet_list,retweet_count))
 
 
 @app.route("/login",  methods=['POST'])
